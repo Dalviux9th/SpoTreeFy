@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class Spotreefy {
 // Clase principal. Aqui se desarrolla la ejecucion del programa.
     public static void main(String[]args) {
-        boolean valido= false;
-        boolean salir= false;
+        boolean valido = false;
+        boolean salir = false;
         int numero = 0;
         Scanner entrada = new Scanner(System.in);
         ArbolUsers usuarios;
