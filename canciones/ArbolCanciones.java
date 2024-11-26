@@ -3,7 +3,7 @@ public class ArbolCanciones{
      private NodoCancion raiz;
 
      // contructor arbol de canciones
-     public void Arbolcanciones() {
+     public ArbolCanciones() {
           this.raiz = null;
      }
 
