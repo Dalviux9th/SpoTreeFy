@@ -18,17 +18,33 @@ public class NodoAutor {
     public NodoAutor getSiguiente() {
         return this.siguiente;
     }
+    
+    public void setSiguiente(NodoAutor nodo) {
+        this.siguiente = nodo;
+    }
 
     public NodoCancion getCancion() {
         return this.primeraCancion;
+    }
+
+    public void setCancion(NodoCancion primeraCancion) {
+        this.primeraCancion = primeraCancion;
     }
 
     public String getNombreAutor() {
         return this.nombreAutor;
     }
 
-    public void setSiguiente(NodoAutor nodo) {
-        this.siguiente = nodo;
+    public boolean setNombreAutor(String nombreAutor) {
+    // SI el nombre cumple los requerimientos, se añade y se devuelve TRUE. Si NO, devuelve FALSE.
+        boolean resultado = false;
+
+        if (nombreAutor.length() > 0 && nombreAutor.length() <= 8) {
+            this.nombreAutor = nombreAutor;
+            resultado = true;
+        }
+        
+        return resultado;
     }
 
 }
