@@ -14,6 +14,10 @@ public class ArbolCanciones{
      // NO SE ENCARGA de colocar en lista circular de autor
           this.raiz = insertOrder(nuevoTitulo, raiz);
      }
+     
+     public NodoCancion buscarPorTitulo(String titulo) {
+          return buscarTitulo(titulo, raiz);
+     }
 
      // Métodos PRIVADOS (uso interno)
 
@@ -27,7 +31,7 @@ public class ArbolCanciones{
           
           } else {
 
-               if ( ControlString.esMayor( actual.getTitulo(), nuevoTitulo ) ) {     // Busco por la izquierda
+               if ( actual.getTitulo().compareTo(nuevoTitulo) > 0 ) {     // Busco por la izquierda
 
                     actual.setAnterior( insertOrder(nuevoTitulo, actual.getAnterior()) );
 
@@ -42,5 +46,17 @@ public class ArbolCanciones{
           }
           
           return actual;
+     }
+
+     private NodoCancion buscarTitulo(String titulo, NodoCancion actual) {
+          NodoCancion resultado = null;
+          if (actual == null || titulo.equals(actual.getTitulo())) {
+               resultado = actual;
+          } else {
+               if ( actual.getTitulo().compareTo(titulo) > 0)
+               actual = buscarTitulo(titulo, actual);
+          }
+
+          return resultado;
      }
 }
