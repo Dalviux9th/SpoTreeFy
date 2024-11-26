@@ -1,7 +1,7 @@
 public class ControlString {
     // Clase de manejo de String (agrega métodos)
 
-    public boolean esMayor(String strA, String strB) {
+    public static boolean esMayor(String strA, String strB) {
         // Devuelve true si A es mayor que B en el orden alfanumérico.
 
         boolean resultado;
@@ -14,7 +14,7 @@ public class ControlString {
 
         if (pos >= strA.length() || pos >= strB.length()) {     // Al menos una llegó a su fin.
 
-            if (pos >= strA.length() && pos < strB.length()) {  // UNICO caso donde A será mayor
+            if (pos >= strA.length() && pos < strB.length()) {  // UNICO caso donde A será mayor:
                 resultado = true;                               // A es más corta que B siendo sus caracteres idénticos
             } else {
                 resultado = false;

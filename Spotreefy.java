@@ -10,7 +10,7 @@ public class Spotreefy {
         ArbolUsers usuarios;
 
             System.out.println( "¡Bienvenido a Spotreefy!");
-            while( !salir){
+            while(!salir){
 
                 System.out.println( "menu principal");
                 
