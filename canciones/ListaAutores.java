@@ -11,19 +11,61 @@ public class ListaAutores {
     // Métodos de la lista  -----------
 
     public boolean autorExiste(String autor) {
+    // Busca un nodo por nombre de autor. Si existe devuelve TRUE, si no FALSE.
         boolean existe = false;
-        // Devuelve true si el autor ya existe en la lista.
+        NodoAutor actual = primero;
+
+        while ( actual != null && !existe ) {
+            if (autor.equals(actual.getNombreAutor())) {
+                existe = true;
+            } else {
+                actual = actual.getSiguiente();
+            }
+        }
+
         return existe;
     }
 
-    public void insertarAutor(NodoAutor nuevoNodo) {
+    public void insertarAutor(String nombreAutor, NodoCancion cancion) {
+    // Toma un nombre de autor y un titulo de cancion. Inserta el autor y le asigna su primera cancion
+        NodoAutor nuevoNodo = new NodoAutor(nombreAutor, cancion);
+        cancion.setSigAutor(cancion);           // Esta solo por lo cual apunta a si mismo (lista circular)
+
         if (this.primero == null) {            // CASO lista vacia
             this.primero = nuevoNodo;
-        } else {                               // Si no está vacia ---
 
-            NodoAutor actual = primero.getSiguiente();
-            NodoAutor anterior = primero.getSiguiente();
-            if ()
+        } else {                               // Si no está vacia ---
+            if (nombreAutor.compareTo(primero.getNombreAutor()) < 0) {  // Si es alfabeticamente anterior al primero.
+                
+                nuevoNodo.setSiguiente(primero);
+                this.primero = nuevoNodo;
+            
+            } else {
+
+                NodoAutor actual = primero.getSiguiente();
+                NodoAutor anterior = primero;
+
+                while (actual != null && actual.getNombreAutor().compareTo(nombreAutor) < 0) {
+                    anterior = actual;
+                    actual = actual.getSiguiente();
+                }
+
+                if (!nombreAutor.equals(actual.getNombreAutor())) {     // Si no existe el autor lo añade
+                    nuevoNodo.setSiguiente(actual);
+                    anterior.setSiguiente(nuevoNodo);
+                }
+            }
         }
+    }
+
+    public NodoAutor buscarAutor(String nombreAutor) {
+    // Devuelve un nodo de autor si lo encuentra o NULL si no existe en la lista.
+        NodoAutor actual = this.primero;
+
+        while ( actual != null && !nombreAutor.equals(actual.getNombreAutor()) ) {
+            actual = actual.getSiguiente();
+        }
+
+        return actual;
     }
 }
