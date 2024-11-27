@@ -16,6 +16,7 @@ public class ArbolCanciones{
      }
      
      public NodoCancion buscarPorTitulo(String titulo) {
+     // Busca una cancion por titulo y devuelve su nodo
           return buscarTitulo(titulo, raiz);
      }
 
@@ -27,7 +28,6 @@ public class ArbolCanciones{
           if (actual == null) {
 
                actual = new NodoCancion(nuevoTitulo);       // llegué a una HOJA -> Inserto el nodo.
-               
           
           } else {
 
@@ -49,6 +49,7 @@ public class ArbolCanciones{
      }
 
      private NodoCancion buscarTitulo(String titulo, NodoCancion actual) {
+     // Busca en el arbol el nodo que coincida con el titulo dado.
           NodoCancion resultado = null;
           if (actual == null || titulo.equals(actual.getTitulo())) {
                resultado = actual;

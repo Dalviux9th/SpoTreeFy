@@ -57,4 +57,15 @@ public class ListaAutores {
             }
         }
     }
+
+    public NodoAutor buscarAutor(String nombreAutor) {
+    // Devuelve un nodo de autor si lo encuentra o NULL si no existe en la lista.
+        NodoAutor actual = this.primero;
+
+        while ( actual != null && !nombreAutor.equals(actual.getNombreAutor()) ) {
+            actual = actual.getSiguiente();
+        }
+
+        return actual;
+    }
 }
