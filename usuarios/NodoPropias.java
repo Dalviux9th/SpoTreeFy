@@ -7,6 +7,9 @@ public class NodoPropias {
     private transient NodoPropias canciones;
 
     //constructor
-    public <Nodoprpias
+    public NodoPropias(String Nombre){
+        this.Nombre = Nombre;
+        
+    }
 
 }
