@@ -11,7 +11,7 @@ public class Spotreefy {
         ArbolCanciones canciones;
 
             System.out.println( "¡Bienvenido a Spotreefy!");
-            while( !salir){
+            while(!salir){
 
                 System.out.println( "menu principal");
                 
