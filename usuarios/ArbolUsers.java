@@ -1,3 +1,7 @@
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 public class ArbolUsers {
     //clase para el arbol de usuarios
     NodoUser raiz;
@@ -78,5 +82,21 @@ public class ArbolUsers {
           return resultado;
      }
 
-     
+    public boolean Serializar(String RUTA_GUARDADO) throws IOException {
+        return serializar(raiz, RUTA_GUARDADO);
+    }
+
+    private boolean serializar(NodoUser user, String RUTA_GUARDADO) throws IOException {
+        boolean exito = false;
+
+            FileOutputStream fileOut = new FileOutputStream(RUTA_GUARDADO);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            
+            // Desarrollo del serializado...
+
+            out.close();
+
+        return exito;
+
+    }
 }

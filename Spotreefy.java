@@ -9,6 +9,8 @@ public class Spotreefy {
 
         Scanner entrada = new Scanner(System.in);
 
+        final String RUTA_GUARDADO = "work/ArioniDenicolay";
+
         ArbolUsers usuarios = null;
         ArbolCanciones canciones = null;
         ListaAutores autores = new ListaAutores();
@@ -71,7 +73,7 @@ public class Spotreefy {
                     // Salir
                     case 4:
                         salir = true;
-                        usuarios.guardarDatos();
+                        Escritura.guardarTodo(RUTA_GUARDADO);
                         break;
                     
                 }

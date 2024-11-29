@@ -1,11 +1,17 @@
 // nodo de arbol de usuarios
-public class NodoUser {
-    private ListasPropias L_propias;
-    private ListaSeguidos L_seguidos;
+
+import java.io.Serializable;
+
+public class NodoUser implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+
+    private transient ListasPropias L_propias;
+    private transient ListaSeguidos L_seguidos;
     private transient NodoUser mayores;
     private transient NodoUser menores;
     private String nombreUsuario;
-    private  String password;
+    private String password;
  // constructor
     public NodoUser( String nombreUsuario, String password){
         this.nombreUsuario = nombreUsuario;
@@ -54,6 +60,10 @@ public class NodoUser {
         return this.L_propias;
     }
 
+    @Override
+    public String toString() {
+        return "NodoUser{nombreUsuario = '" + nombreUsuario + "', password = '" + password + "'}";
+    }
     
 }
     
