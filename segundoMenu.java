@@ -14,6 +14,8 @@ public class segundoMenu{
         this.user = usuarios.buscarUser(user);
         this.entrada = new Scanner(System.in);
     }
+    
+
 
     public void ejecutar(){
         int Numero;
@@ -27,28 +29,22 @@ public class segundoMenu{
             case 1:
                 String[] datos = datosNewcancion();
                 
-                canciones.insertarOrdenado(datos[1]);
-                if (autores.autorExiste(datos[0])) {
-                    // ...ss
-                }else{
-                    
-                    usuarios.buscarTitulo(datos[1],);
+                canciones.insertarOrdenado(datos[1]);                           // Insertar la cancion al arbol
+                NodoCancion TemaNuevo = canciones.buscarPorTitulo(datos[1]);    // buscar la cancion en el arbol
+                                                                                // Verificar si el autor existe
+                if (autores.autorExiste(datos[0])) {                            // SI existe ->
+                    autores.buscarAutor(datos[0]).insertarCircular(TemaNuevo);  // agregar la cancion a la lista circular
+                }else{                                                          // SI NO existe ->
+                   autores.insertarAutor(datos[0], TemaNuevo);                  // insertar nuevo autor(autor y nodoCancion)
                 }
                 
-                // Insertar la cancion al arbol
-                // Verificar si el autor existe
-                // SI NO existe ->
-                //  buscar la cancion en el arbol
-                //  insertar nuevo autor(autor y nodoCancion)
-                // SI existe ->
-                // agregar la cancion a la lista circular
                 break;
         
             case 2:
                 String NuevaLista;
                 System.out.println("ingrese nombre de la lista nueva");
                     NuevaLista = entrada.nextLine();
-                if(usuarios.existelista( NuevaLista, user)){
+                if(user.getL_propias().existeLista( NuevaLista)){
                     System.out.println("La lista ya existe");
 
                 }else{

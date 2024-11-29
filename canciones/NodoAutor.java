@@ -49,11 +49,11 @@ public class NodoAutor {
 
     // Metodos de la lista de canciones del autor (CIRCULAR)
     
-    public void insertarCircular(NodoCancion nuevaCancion, String autor) {
+    public void insertarCircular(NodoCancion nuevaCancion) {
     // Agrega un nodo a la lista circular de su autor. Agrega siempre en el segundo lugar (no controla duplicados, debe contemplarse antes de insertar)
         if (this.primeraCancion == null) {
             this.primeraCancion = nuevaCancion;
-            nuevaCancion.setSigAutor(nuevaCancion);
+            nuevaCancion.setSigAutor(nuevaCancion);     // Apunta a si mismo (circular)
         } else {
             nuevaCancion.setSigAutor(primeraCancion.getSigAutor());
             this.primeraCancion.setSigAutor(nuevaCancion);

@@ -60,4 +60,23 @@ public class ArbolUsers {
         }
         
     }
+
+    
+    public NodoUser buscarUser(String user){
+        return buscarUsuario( user, raiz);
+    }
+
+    public NodoUser buscarUsuario(String User, NodoUser actual){
+        NodoUser resultado = null;
+          if (actual == null || User.equals(actual.getNombreUsu())) {
+               resultado = actual;
+          } else {
+               if ( actual.getNombreUsu().compareTo(User) > 0)
+               actual = buscarUsuario(User, actual);
+          }
+
+          return resultado;
+     }
+
+     
 }

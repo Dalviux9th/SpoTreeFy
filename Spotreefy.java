@@ -9,6 +9,8 @@ public class Spotreefy {
         Scanner entrada = new Scanner(System.in);
         ArbolUsers usuarios;
         ArbolCanciones canciones;
+        ListaAutores autores = new ListaAutores();
+        segundoMenu menuSecundario = null;
 
             System.out.println( "¡Bienvenido a Spotreefy!");
             while(!salir){
@@ -40,7 +42,8 @@ public class Spotreefy {
                         System.out.println("ingrese password");
                         Password = entrada.nextLine();
                         if (usuarios.Firewall(Nombre, Password)){
-                            menuSecundario();
+                            menuSecundario = new segundoMenu(usuarios, canciones, Nombre, autores);
+                            menuSecundario.ejecutar();
                         }
                         break;
 

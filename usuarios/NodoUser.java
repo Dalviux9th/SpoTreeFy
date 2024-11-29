@@ -49,5 +49,11 @@ public class NodoUser {
     public void setPassword(String password){
         this.password = password;
     }
+
+    public ListasPropias getL_propias(){
+        return this.L_propias;
+    }
+
+    
 }
     

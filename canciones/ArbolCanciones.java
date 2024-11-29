@@ -9,7 +9,7 @@ public class ArbolCanciones{
 
      // Métodos PUBLICOS del árbol  --------------
 
-     public void insertarOrdenado(String nuevoTitulo, String autor) {
+     public void insertarOrdenado(String nuevoTitulo) {
      // Inserta un nuevo nodo (recibiendo parametro titulo) ordenado alfabéticamente por título.
      // NO SE ENCARGA de colocar en lista circular de autor
           this.raiz = insertOrder(nuevoTitulo, raiz);
@@ -23,7 +23,7 @@ public class ArbolCanciones{
      // Métodos PRIVADOS (uso interno)
 
      private NodoCancion insertOrder(String nuevoTitulo, NodoCancion actual) {
-     // Busca la hoja donde colocar. Crea e inserta el nodo. Además actualiza lista circular por autor.
+     // Busca la hoja donde colocar. Crea e inserta el nodo.
 
           if (actual == null) {
 
