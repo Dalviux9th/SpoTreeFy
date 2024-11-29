@@ -22,58 +22,66 @@ public class segundoMenu{
         boolean volver = false;
        
         entrada.next(); // limpio buffer
-    while(volver){
-        System.out.println(" ingrese el numero segun corresponda");
-        Numero  = entrada.nextInt();
-        switch (Numero) {
-            case 1:
-                String[] datos = datosNewcancion();
+        while(volver){
+            System.out.println(" ingrese el numero segun corresponda");
+            Numero  = entrada.nextInt();
+            switch (Numero) {
+
+                // Agregar una canción nueva    -----------------------------------------
+                case 1:
+                    String[] datos = datosNewcancion();
+                    
+                    canciones.insertarOrdenado(datos[1]);                           // Insertar la cancion al arbol
+                    NodoCancion TemaNuevo = canciones.buscarPorTitulo(datos[1]);    // buscar la cancion en el arbol
+                    // Verificar si el autor existe
+                    if (autores.autorExiste(datos[0])) {                            // SI existe ->
+                        autores.buscarAutor(datos[0]).insertarCircular(TemaNuevo);  // agregar la cancion a la lista circular
+                    } else {                                                        // SI NO existe ->
+                    autores.insertarAutor(datos[0], TemaNuevo);                     // insertar nuevo autor(autor y nodoCancion)
+                    }
+                    
+                    break;
                 
-                canciones.insertarOrdenado(datos[1]);                           // Insertar la cancion al arbol
-                NodoCancion TemaNuevo = canciones.buscarPorTitulo(datos[1]);    // buscar la cancion en el arbol
-                                                                                // Verificar si el autor existe
-                if (autores.autorExiste(datos[0])) {                            // SI existe ->
-                    autores.buscarAutor(datos[0]).insertarCircular(TemaNuevo);  // agregar la cancion a la lista circular
-                }else{                                                          // SI NO existe ->
-                   autores.insertarAutor(datos[0], TemaNuevo);                  // insertar nuevo autor(autor y nodoCancion)
-                }
+                // Crear una nueva playlist vacía   -------------------------------------
+                case 2:
+                    String NuevaLista;
+                    System.out.println("ingrese nombre de la lista nueva");
+                        NuevaLista = entrada.nextLine();
+                    if(user.getL_propias().existeLista( NuevaLista)){
+                        System.out.println("La lista ya existe");
+
+                    }else{
+                        agregarListapropia();
+                    }
+                    break;
                 
-                break;
-        
-            case 2:
-                String NuevaLista;
-                System.out.println("ingrese nombre de la lista nueva");
-                    NuevaLista = entrada.nextLine();
-                if(user.getL_propias().existeLista( NuevaLista)){
-                    System.out.println("La lista ya existe");
+                // Agregar cancion (a playlist) por título  -----------------------------
+                case 3:
+                    
+                    break;
 
-                }else{
-                    agregarListapropia();
-                }
-                break;
+                // Agregar cancion (a playlist) por autor   -----------------------------
+                case 4:
+                    
+                    break;
 
-            case 3:
-                
-                break;
+                // Eliminar playlist propia
+                case 5:
+                    
+                    break;
 
-            case 4:
-                
-                break;
+                // Seguir playlist de otro usuario
+                case 6:
+                    
+                    break;
 
-            case 5:
-                
-                break;
+                // Salir al menú de primer nivel
+                case 7:
+                    volver = true;
 
-            case 6:
-                
-                break;
-
-            case 7:
-                volver = true;
-
-                break;
+                    break;
+            }
         }
-    }
     }
 
     public String[] datosNewcancion(){
