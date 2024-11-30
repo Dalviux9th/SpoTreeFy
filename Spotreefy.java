@@ -9,7 +9,7 @@ public class Spotreefy {
 
         Scanner entrada = new Scanner(System.in);
 
-        final String RUTA_GUARDADO = "work/ArioniDenicolay";
+        final String RUTA_GUARDADO = "/work/ArioniDenicolay";
 
         ArbolUsers usuarios = null;
         ArbolCanciones canciones = null;

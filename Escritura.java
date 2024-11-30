@@ -29,16 +29,19 @@ public class Escritura {
 
             try {
 
-                if (usuarios.Serializar(RUTA_USUARIOS) /*&& saveCanciones() && savePropias() && saveSeguidas()*/) {
-                    exito = true;
-                } else {
-                    intentos ++;
-                }
+                usuarios.Serializar(RUTA_USUARIOS);
+                // saveCanciones();
+                // savePropias();
+                // saveSeguidas();
+                
+                exito = true;   // Si todos los procesos terminan sin error, considero estado de exito.
 
             } catch (IOException e) {
+
                 intentos++;
-                e.printStackTrace();
                 System.out.println("Hubo un error al guardar; Reintentando...");
+                e.printStackTrace();
+
             }
 
         }

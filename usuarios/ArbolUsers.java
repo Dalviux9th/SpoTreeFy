@@ -82,21 +82,24 @@ public class ArbolUsers {
           return resultado;
      }
 
-    public boolean Serializar(String RUTA_GUARDADO) throws IOException {
-        return serializar(raiz, RUTA_GUARDADO);
+    public void Serializar(String RUTA_GUARDADO) throws IOException {
+        // Serializa todos los nodos de un arbol y los guarda en el archivo dado. Recorre en PRE-ORDER
+        FileOutputStream fileOut = new FileOutputStream(RUTA_GUARDADO);
+        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+        
+        serializar(raiz, RUTA_GUARDADO, out);
+
+        out.close();
+
     }
 
-    private boolean serializar(NodoUser user, String RUTA_GUARDADO) throws IOException {
-        boolean exito = false;
+    private void serializar(NodoUser user, String RUTA_GUARDADO, ObjectOutputStream out) throws IOException {
 
-            FileOutputStream fileOut = new FileOutputStream(RUTA_GUARDADO);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            
-            // Desarrollo del serializado...
-
-            out.close();
-
-        return exito;
+        if (user != null) {
+            out.writeObject(user);
+            serializar(user.getmenores(), RUTA_GUARDADO, out);
+            serializar(user.getmayores(), RUTA_GUARDADO, out);
+        }
 
     }
 }
