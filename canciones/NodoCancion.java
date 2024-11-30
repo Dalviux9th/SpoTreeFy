@@ -1,10 +1,14 @@
-public class NodoCancion {
+import java.io.Serializable;
+
+public class NodoCancion implements Serializable{
     // Clase Nodo del ArbolCanciones. Tiene dos punteros (del arbol) y un tercero que apunta a la siguiente del autor (circular).
     
+    private static final long serialVersionUID = 1L;
+
     private String titulo;
     private transient NodoCancion anterior;     // Sub arbol izquierdo
     private transient NodoCancion posterior;    // Sub arbol derecho
-    private transient NodoCancion sigAutor;     // Siguiente en lista circular de autores
+    private NodoCancion sigAutor;     // Siguiente en lista circular de autores
 
     //Constructor
     public NodoCancion(String titulo){
@@ -13,7 +17,6 @@ public class NodoCancion {
         this.anterior = null;
         this.posterior = null;
         this.sigAutor = null;
-
     }
 
     //Getters y Setters     -----------
@@ -57,5 +60,10 @@ public class NodoCancion {
         }
         
         return valido;
+    }
+
+    @Override
+    public String toString() {
+        return "NodoCancion{titulo='" + this.titulo + "', sigAutor='" + this.sigAutor + "'}";
     }
 }
