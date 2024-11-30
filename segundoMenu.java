@@ -47,17 +47,27 @@ public class segundoMenu{
                     String NuevaLista;
                     System.out.println("ingrese nombre de la lista nueva");
                         NuevaLista = entrada.nextLine();
-                    if(user.getL_propias().existeLista( NuevaLista)){
+                    if(user.getL_propias().existeLista(NuevaLista)){
                         System.out.println("La lista ya existe");
 
                     }else{
-                        agregarListapropia();
+                        user.getL_propias().agregarListaPropia(NuevaLista);
                     }
                     break;
                 
                 // Agregar cancion (a playlist) por título  -----------------------------
                 case 3:
-                    
+                    String NombrePlaylist, Cancion;
+                    System.out.println("ingrese nombre de la nueva PLaylist");
+                    NombrePlaylist = entrada.nextLine();
+                    System.out.println("ingrese nombre de la cancion");
+                    Cancion = entrada.nextLine();
+                    nuevaCan(NombrePlaylist, Cancion);
+                    //Agregar una canción por título
+                    // Solicita el nombre de la playlist y el título de la canción,
+                    // verifica que ambas existan (en la lista y en el árbol, además que la canción ya no esté en esa lista) 
+                    //y si esto se cumple la agrega.
+
                     break;
 
                 // Agregar cancion (a playlist) por autor   -----------------------------
@@ -82,6 +92,18 @@ public class segundoMenu{
                     break;
             }
         }
+    }
+
+    public void nuevaCan(String NombrePlaylist, String Cancion){
+        if(user.getL_propias().existeLista(NombrePlaylist) && canciones.buscarPorTitulo(Cancion) != null){
+            CargarCancion(NombrePlaylist, Cancion);
+        }
+    }   
+
+    private void CargarCancion(String NombrePlaylist, String Cancion){
+        
+        NodoPropias Grupo = user.getL_propias().verNodopropias(NombrePlaylist);
+        user.getL_propias().Sublista(Grupo, Cancion);
     }
 
     public String[] datosNewcancion(){
