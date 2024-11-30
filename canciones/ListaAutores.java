@@ -1,3 +1,7 @@
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 public class ListaAutores {
     //Lista de autores, que debe estar ordenada por nombre de autor. Cada nodo apunta a una lista circular en el árbol de canciones.
     
@@ -9,6 +13,10 @@ public class ListaAutores {
     }
 
     // Métodos de la lista  -----------
+
+    public NodoAutor getPrimero() {
+        return this.primero;
+    }
 
     public boolean autorExiste(String autor) {
     // Busca un nodo por nombre de autor. Si existe devuelve TRUE, si no FALSE.
@@ -67,5 +75,22 @@ public class ListaAutores {
         }
 
         return actual;
+    }
+
+    public void Serializar(String RUTA_GUARDADO) throws IOException {
+        //Recorre la lista de autores archivando cada autor y sus canciones.
+
+        FileOutputStream fileOut = new FileOutputStream(RUTA_GUARDADO);
+        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+
+        NodoAutor actual = this.primero;
+        
+        while (actual != null) {
+            out.writeObject(actual);
+            actual = actual.getSiguiente();
+        }
+
+        out.close();
+
     }
 }

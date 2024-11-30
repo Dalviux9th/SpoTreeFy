@@ -15,13 +15,13 @@ public class Escritura {
     private final String RUTA_L_SEGUIDAS;
 
     public Escritura(String RUTA_GUARDADO) {
-        this.RUTA_USUARIOS = RUTA_GUARDADO + "-ArchUsuarios";
-        this.RUTA_CANCIONES = RUTA_GUARDADO + "-ArchCanciones";
-        this.RUTA_L_PROPIAS = RUTA_GUARDADO + "-ArchListasPropias";
-        this.RUTA_L_SEGUIDAS = RUTA_GUARDADO + "-ArchListasSeguidas";
+        this.RUTA_USUARIOS = RUTA_GUARDADO + "-ArchUsuarios.save";
+        this.RUTA_CANCIONES = RUTA_GUARDADO + "-ArchCanciones.save";
+        this.RUTA_L_PROPIAS = RUTA_GUARDADO + "-ArchListasPropias.save";
+        this.RUTA_L_SEGUIDAS = RUTA_GUARDADO + "-ArchListasSeguidas.save";
     }
 
-    public boolean guardarTodo(ArbolUsers usuarios, ArbolCanciones canciones) {
+    public boolean guardarTodo(ArbolUsers usuarios, ListaAutores autores) {
         boolean exito = false;
         int intentos = 0;
 
@@ -30,7 +30,7 @@ public class Escritura {
             try {
 
                 usuarios.Serializar(RUTA_USUARIOS);
-                // saveCanciones();
+                autores.Serializar(RUTA_CANCIONES);
                 // savePropias();
                 // saveSeguidas();
                 
@@ -47,5 +47,9 @@ public class Escritura {
         }
 
         return exito;
+    }
+
+    public boolean leerTodo(ArbolUsers usuarios, ArbolCanciones canciones) {
+        return true;
     }
 }

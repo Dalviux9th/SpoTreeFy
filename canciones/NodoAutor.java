@@ -72,8 +72,25 @@ public class NodoAutor implements Serializable{
         } while (actual != this.primeraCancion);
     }
 
+    private String cancionesToString() {
+        NodoCancion actual = this.primeraCancion;
+        if (actual != null) {
+            return "NodoCancion{titulo='" + actual.getTitulo() + "', sigAutor='" + toStringRecursivo(actual.getSigAutor()) + "'}";
+        } else {
+            return null;
+        }
+    }
+
+    private String toStringRecursivo(NodoCancion actual) {
+        if (actual != this.primeraCancion) {
+            return "NodoCancion{titulo='" + actual.getTitulo() + "', sigAutor='" + toStringRecursivo(actual.getSigAutor());
+        } else {
+            return null;
+        }
+    }
+
     @Override
     public String toString() {
-        return "NodoAutor{nombreAutor='" + this.nombreAutor + "', primeraCancion='" + this.primeraCancion + "'}";
+        return "NodoAutor{nombreAutor='" + this.nombreAutor + "', primeraCancion='" + cancionesToString() + "'}";
     }
 }
