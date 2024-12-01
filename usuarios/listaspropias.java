@@ -54,4 +54,30 @@ public class ListasPropias {
 
 
         }
+
+        public void borrarL_propia(String Playlist){
+            if(primero.getPlaylist().compareTo(Playlist) == 0){
+                primero = primero.getSiguiente();
+            }else{
+
+                NodoPropias Actual, Anterior;
+                Actual = primero.getSiguiente();
+                Anterior = primero;
+                while( Actual.getPlaylist().compareTo(Playlist) != 0){
+                    Anterior = Actual;
+                    Actual = Actual.getSiguiente();
+                } 
+                    if(Actual.getPlaylist().compareTo(Playlist) == 0){
+                        //revisar posible error por Actual == null;
+                        Anterior.setSiguiente(Actual.getSiguiente());
+                        System.out.println("lista eliminada");
+                    }else{
+                        System.out.println("la lista a eliminar no existe");
+                    }
+            }
+            
+
+        }
+    
 }
+

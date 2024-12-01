@@ -77,7 +77,10 @@ public class segundoMenu{
 
                 // Eliminar playlist propia
                 case 5:
-                    
+                String Playlist;
+                    System.out.println("ingrese en nombre de la Playlist propia que desea eliminar");
+                    Playlist = entrada.nextLine();
+                    user.getL_propias().borrarL_propia(Playlist);
                     break;
 
                 // Seguir playlist de otro usuario
