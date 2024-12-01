@@ -1,10 +1,12 @@
-// IMPORTANTE! al generar el método serializador, agregar el titulo de la cancion (para despues revincular al deserializar)
-public class NodoAutor {
+import java.io.Serializable;
+
+public class NodoAutor implements Serializable{
     //Clase Nodo de la lista de autores.
+    private static final long serialVersionUID = 1L;
     
     private String nombreAutor;
     private transient NodoAutor siguiente;
-    private transient NodoCancion primeraCancion;
+    private NodoCancion primeraCancion;
 
     // Constructor
     public NodoAutor(String nombreAutor, NodoCancion cancion) {
@@ -68,5 +70,27 @@ public class NodoAutor {
             System.out.println("- " + actual.getTitulo());
             actual = actual.getSigAutor();
         } while (actual != this.primeraCancion);
+    }
+
+    private String cancionesToString() {
+        NodoCancion actual = this.primeraCancion;
+        if (actual != null) {
+            return "NodoCancion{titulo='" + actual.getTitulo() + "', sigAutor='" + toStringRecursivo(actual.getSigAutor()) + "'}";
+        } else {
+            return null;
+        }
+    }
+
+    private String toStringRecursivo(NodoCancion actual) {
+        if (actual != this.primeraCancion) {
+            return "NodoCancion{titulo='" + actual.getTitulo() + "', sigAutor='" + toStringRecursivo(actual.getSigAutor());
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "NodoAutor{nombreAutor='" + this.nombreAutor + "', primeraCancion='" + cancionesToString() + "'}";
     }
 }

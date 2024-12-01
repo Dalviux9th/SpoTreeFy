@@ -3,16 +3,24 @@ import java.util.Scanner;
 public class Spotreefy {
 // Clase principal. Aqui se desarrolla la ejecucion del programa.
     public static void main(String[]args) {
-        boolean valido = false;
-        boolean salir = false;
-        int numero = 0;
 
-        Scanner entrada = new Scanner(System.in);
+        // Declaraciones...
+        final String RUTA_GUARDADO = "/work/ArioniDenicolay";
 
-        ArbolUsers usuarios = null;
-        ArbolCanciones canciones = null;
-        ListaAutores autores = new ListaAutores();
-        segundoMenu menuSecundario = null;
+        boolean valido = false;     // Flag lectura
+        boolean salir = false;      // Flag primer menú
+        int numero = 0;             // Auxiliar lectura
+
+        Scanner entrada = new Scanner(System.in);               // lector de entrada
+
+        ArbolUsers usuarios = new ArbolUsers();                             // Instancia arbol de usuarios
+        ArbolCanciones canciones = new ArbolCanciones();                        // Instancia arbol de canciones
+        ListaAutores autores = new ListaAutores();              // Instancia lista de autores
+
+        segundoMenu menuSecundario = null;                          // Declaracion entrono segundo menu
+        Permanencia persistencia = new Permanencia(RUTA_GUARDADO);  // Instancia gestor de archivos de persistencia
+
+        // Interfaz...
 
         System.out.println( "¡Bienvenido a Spotreefy!");
         while(!salir){
@@ -43,9 +51,9 @@ public class Spotreefy {
                         Password = entrada.nextLine();
 
                         if (usuarios.Firewall(Nombre, Password)){
-                            menuSecundario = new segundoMenu(usuarios, canciones, Nombre, autores);
+                            menuSecundario = new segundoMenu(canciones, usuarios.buscarUser(Nombre), autores);
                             menuSecundario.ejecutar();
-                            menuSecundario = null;      // CIERRA SESION
+                            menuSecundario = null;      // CIERRA SESION (anula instancia segundo menu)
                         }
 
                         break;
@@ -71,7 +79,7 @@ public class Spotreefy {
                     // Salir
                     case 4:
                         salir = true;
-                        usuarios.guardarDatos();
+                        persistencia.guardarTodo(usuarios, autores);
                         break;
                     
                 }

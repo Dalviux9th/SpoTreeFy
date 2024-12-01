@@ -1,9 +1,25 @@
 public class NodoSubCan{
-    private NodoSubCan cancion; //punteor a a la cancion (arbol canciones)
-    private NodoSubCan siguiente; // sn orden definido
+    private NodoCancion cancion; //puntero a la cancion (arbol canciones)
+    private NodoSubCan siguiente; // sin orden definido
 
-    public NodoSubCan(){
-        this.cancion = null;
+    public NodoSubCan(NodoCancion cancion){
+        this.cancion = cancion;
         this.siguiente = null;
+    }
+
+    public NodoCancion getCancion() {
+        return cancion;
+    }
+
+    public NodoSubCan getSiguiente() {
+        return siguiente;
+    }
+
+    public void setCancion(NodoCancion cancion) {
+        this.cancion = cancion;
+    }
+
+    public void setSiguiente(NodoSubCan siguiente) {
+        this.siguiente = siguiente;
     }
 }
