@@ -87,27 +87,44 @@ public class ArbolUsers {
         FileOutputStream fileOut = new FileOutputStream(RUTA_GUARDADO);
         ObjectOutputStream out = new ObjectOutputStream(fileOut);
         
-        serializar(raiz, RUTA_GUARDADO, out);
+        serializar(raiz, out);
 
         out.close();
 
     }
 
-    private void serializar(NodoUser user, String RUTA_GUARDADO, ObjectOutputStream out) throws IOException {
+    private void serializar(NodoUser user, ObjectOutputStream out) throws IOException {
 
         if (user != null) {
             out.writeObject(user);
-            serializar(user.getmenores(), RUTA_GUARDADO, out);
-            serializar(user.getmayores(), RUTA_GUARDADO, out);
+            serializar(user.getmenores(), out);
+            serializar(user.getmayores(), out);
         }
 
     }
 
-    public void SerializarLPropias(String RUTA_L_PROPIAS) throws IOException {
-        // TODO Auto-generated method stub
+    public void SerializarListas(String RUTA_PROPIAS, String RUTA_SEGUIDAS) throws IOException {
+        FileOutputStream fileOutProps = new FileOutputStream(RUTA_PROPIAS);
+        ObjectOutputStream outProps = new ObjectOutputStream(fileOutProps);
+        
+        FileOutputStream fileOutSegs = new FileOutputStream(RUTA_SEGUIDAS);
+        ObjectOutputStream outSegs = new ObjectOutputStream(fileOutSegs);
+        
+        
+        serializarListas(raiz, outProps, outSegs);
+
+        outProps.close();
+        outSegs.close();
     }
 
-    public void SerializarLSeguidas(String RUTA_L_SEGUIDAS) throws IOException {
-        // TODO Auto-generated method stub
+    public void serializarListas(NodoUser user, ObjectOutputStream outProps, ObjectOutputStream outSegs) throws IOException {
+
+        if (user != null) {
+            user.getL_propias().Serializar(user.getNombreUsu(), outProps);
+            user.getL_seguidos().Serializar(user.getNombreUsu(), outSegs);
+
+            serializarListas(user.getmenores(), outProps, outSegs);
+            serializarListas(user.getmayores(), outProps, outSegs);
+        }
     }
 }

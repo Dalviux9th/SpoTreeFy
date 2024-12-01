@@ -1,3 +1,6 @@
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 public class NodoPropias {
     //clase NodoPropias
 
