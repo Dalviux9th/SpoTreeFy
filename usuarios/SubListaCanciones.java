@@ -4,4 +4,11 @@ public class SubListaCanciones {
     public SubListaCanciones(){
         this.primero = null;
     }
+
+    public boolean existeCancion(String Cancion){
+        NodoSubCan Actual = primero;
+        while(Actual != null && Actual.getCancionArbol().get != Cancion){
+
+        }
+    }
 }
