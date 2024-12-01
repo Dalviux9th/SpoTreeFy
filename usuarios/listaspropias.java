@@ -23,6 +23,13 @@ public class ListasPropias {
             
         }
 
+        public void imprimirLista(){
+            NodoPropias Actual = primero;
+            while( Actual != null){
+                System.out.println("Playlist numero ")
+            }
+        }
+
         public NodoPropias verNodopropias(String Playlist){
             NodoPropias Actual = primero;
             while(Actual.getPlaylist() != Playlist && Actual != null){

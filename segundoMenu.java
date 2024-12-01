@@ -85,7 +85,13 @@ public class segundoMenu{
 
                 // Seguir playlist de otro usuario
                 case 6:
-                    
+                    String UsuarioDes;
+                    System.out.println("ingrese nmbre del usuario de interes");
+                    UsuarioDes = entrada.nextLine();
+                    NodoUser UsuarioSeguir = usuarios.buscarUser(UsuarioDes);
+                    if(UsuarioDes != null){
+                        UsuarioDes.getL_propias().imprimirLista();
+                    }
                     break;
 
                 // Salir al menú de primer nivel
