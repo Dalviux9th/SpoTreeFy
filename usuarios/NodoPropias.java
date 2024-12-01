@@ -4,12 +4,13 @@ public class NodoPropias {
     private String Playlist;
     private transient NodoPropias Siguiente;
     //puntero hacia la primera cancion ( Sub ListaCanciones )
-    private NodoSubCan primeraCan;
+    private SubListaCanciones subLista;
 
     //constructor
     public NodoPropias(String Playlist){
         this.Playlist = Playlist;
         this.Siguiente = null;
+        this.subLista = new SubListaCanciones();
     }
 
 
@@ -29,27 +30,8 @@ public class NodoPropias {
         this.Playlist = Playlist;
     }
 
-    // Métodos de la playlist
-    public boolean existeCancion(String Cancion){
-        NodoSubCan Actual = primeraCan;
-        while(Actual != null && !Cancion.equals(Actual.getCancion().getTitulo())){
-            Actual = Actual.getSiguiente();
-        }
-
-        if (Actual != null) {
-            return true;
-        } else {
-            return false;
-        }
+    public SubListaCanciones getSubLista() {
+        return subLista;
     }
 
-    public void agregarCan(NodoCancion Cancion) {
-        NodoSubCan nuevoNodo = new NodoSubCan(Cancion);
-        if (primeraCan == null) {
-            primeraCan = nuevoNodo;
-        } else {
-            nuevoNodo.setSiguiente(primeraCan.getSiguiente());
-            primeraCan.setSiguiente(nuevoNodo);
-        }
-    }
 }
