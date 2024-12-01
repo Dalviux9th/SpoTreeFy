@@ -73,7 +73,7 @@ public class Spotreefy {
                     // Salir
                     case 4:
                         salir = true;
-                        Escritura.guardarTodo(RUTA_GUARDADO);
+                        Permanencia.guardarTodo(RUTA_GUARDADO);
                         break;
                     
                 }

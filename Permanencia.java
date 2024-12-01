@@ -1,7 +1,7 @@
 import java.io.IOException;
-// Archivo central de guardado de estructuras. Para modificar las rutas, ver constructor de esta clase.
+// Archivo central de archivado de estructuras. Para modificar las rutas, ver constructor de esta clase.
 
-public class Escritura {
+public class Permanencia {
     /*
      1- [ArchUsuarios]: info de Usuario. Dde ArbUsuarios, recorriéndolo en PreOrder.
      2- [ArchCanciones]: info Canción: Título y Nombre del Autor. A partir de ListaAutores y ArbCanciones.
@@ -14,7 +14,7 @@ public class Escritura {
     private final String RUTA_L_PROPIAS;
     private final String RUTA_L_SEGUIDAS;
 
-    public Escritura(String RUTA_GUARDADO) {
+    public Permanencia(String RUTA_GUARDADO) {
         this.RUTA_USUARIOS = RUTA_GUARDADO + "-ArchUsuarios.save";
         this.RUTA_CANCIONES = RUTA_GUARDADO + "-ArchCanciones.save";
         this.RUTA_L_PROPIAS = RUTA_GUARDADO + "-ArchListasPropias.save";
@@ -29,10 +29,8 @@ public class Escritura {
 
             try {
 
-                usuarios.Serializar(RUTA_USUARIOS);
-                autores.Serializar(RUTA_CANCIONES);
-                // savePropias();
-                // saveSeguidas();
+                autores.Serializar(RUTA_CANCIONES);     // Archiva los nodos del arbol de canciones ordenados por autor.
+                usuarios.Serializar(RUTA_USUARIOS);     // Archiva los nodos del arbol de usuarios y también sus listas de playlists.
                 
                 exito = true;   // Si todos los procesos terminan sin error, considero estado de exito.
 

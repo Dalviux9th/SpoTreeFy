@@ -102,4 +102,12 @@ public class ArbolUsers {
         }
 
     }
+
+    public void SerializarLPropias(String RUTA_L_PROPIAS) throws IOException {
+        // TODO Auto-generated method stub
+    }
+
+    public void SerializarLSeguidas(String RUTA_L_SEGUIDAS) throws IOException {
+        // TODO Auto-generated method stub
+    }
 }
