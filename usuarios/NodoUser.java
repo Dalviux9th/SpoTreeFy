@@ -6,7 +6,7 @@ public class NodoUser implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
-    private transient ListasPropias L_propias;
+    private transient ListaPropias L_propias;
     private transient ListaSeguidos L_seguidos;
     private transient NodoUser mayores;
     private transient NodoUser menores;
@@ -18,7 +18,7 @@ public class NodoUser implements Serializable{
         this.password = password;
         this.mayores = null;
         this.mayores = null;
-        this.L_propias = new ListasPropias();
+        this.L_propias = new ListaPropias();
         this.L_seguidos = new ListaSeguidos();
         
     }
@@ -56,8 +56,12 @@ public class NodoUser implements Serializable{
         this.password = password;
     }
 
-    public ListasPropias getL_propias(){
+    public ListaPropias getL_propias(){
         return this.L_propias;
+    }
+
+    public ListaSeguidos getL_seguidos(){
+        return this.L_seguidos;
     }
 
     @Override

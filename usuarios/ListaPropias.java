@@ -1,9 +1,9 @@
-public class ListasPropias {
+public class ListaPropias {
     // clase listas propias
     private NodoPropias primero;
     
     //constructor
-        public ListasPropias(){
+        public ListaPropias(){
            this.primero = null;
         }
 
@@ -24,15 +24,12 @@ public class ListasPropias {
         }
 
         public NodoPropias verNodopropias(String Playlist){
+            // Devuelve un nodo de listas propias dado el titulo de la Playlist.
             NodoPropias Actual = primero;
-            while(Actual.getPlaylist() != Playlist && Actual != null){
+            while(Actual != null && !Playlist.equals(Actual.getPlaylist())){
                 Actual = Actual.getSiguiente();
             }
             return Actual;
-        }
-
-        public void Sublista(NodoPropias grupo, String cancion){
-            grupo.AccesoSubLista(cancion);
         }
 
         public void agregarListaPropia(String NuevaLista){
