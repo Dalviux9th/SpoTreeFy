@@ -2,16 +2,15 @@ import java.util.Scanner;
 
 public class segundoMenu{
 
-    private ArbolUsers usuarios;
     private ArbolCanciones canciones;
     private NodoUser user;
     private ListaAutores autores;
     private Scanner entrada;
 
-    public segundoMenu(ArbolUsers usuarios, ArbolCanciones canciones, String user) {
+    public segundoMenu(ArbolCanciones canciones, NodoUser user, ListaAutores autores) {
         this.canciones = canciones;
-        this.usuarios = usuarios;
-        this.user = usuarios.buscarUser(user);
+        this.user = user;
+        this.autores = autores;
         this.entrada = new Scanner(System.in);
     }
     
