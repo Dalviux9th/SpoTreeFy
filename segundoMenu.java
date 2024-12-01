@@ -65,7 +65,7 @@ public class segundoMenu{
                     // verifica que la lista exista, que la cancion exista en el árbol y que la cancion no esté en esa lista
                     if(user.getL_propias().existeLista(NombrePlaylist) ) {
 
-                        NodoPropias Playlist = user.getL_propias().verNodopropias(NombrePlaylist);
+                        SubListaCanciones Playlist = user.getL_propias().verNodopropias(NombrePlaylist).getSubLista();
                         if ( canciones.buscarPorTitulo(Cancion) != null && !Playlist.existeCancion(Cancion)){
                             
                             // Solo en entonces, la agrega
@@ -73,8 +73,10 @@ public class segundoMenu{
                             System.out.println("cancion agregada a la Playlist");
                             
                         } else {
-                            System.out.println("la cancion ya existe en la Playlist");
+                            System.out.println("la cancion no existe o ya está en la Playlist");
                         }
+                    } else {
+                        System.out.println("no existe la Playlist");
                     }
                     //  SI --> la agrega.
 
