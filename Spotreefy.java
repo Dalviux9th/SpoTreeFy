@@ -51,7 +51,7 @@ public class Spotreefy {
                         Password = entrada.nextLine();
 
                         if (usuarios.Firewall(Nombre, Password)){
-                            menuSecundario = new segundoMenu(canciones, usuarios.buscarUser(Nombre), autores);
+                            menuSecundario = new segundoMenu(canciones, usuarios, usuarios.buscarUser(Nombre), autores);
                             menuSecundario.ejecutar();
                             menuSecundario = null;      // CIERRA SESION (anula instancia segundo menu)
                         }

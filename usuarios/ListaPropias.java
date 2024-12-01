@@ -25,8 +25,10 @@ public class ListaPropias {
 
         public void imprimirLista(){
             NodoPropias Actual = primero;
+            int cont = 1;
             while( Actual != null){
-                System.out.println("Playlist numero ")
+                System.out.println("Playlist numero " + cont + "nombre: " + Actual.getPlaylist());
+                cont ++;
             }
         }
 
