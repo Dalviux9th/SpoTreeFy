@@ -50,7 +50,35 @@ public class Permanencia {
         return exito;
     }
 
-    public boolean leerTodo(ArbolUsers usuarios, ArbolCanciones canciones) {
-        return true;
+    public boolean leerTodo(ArbolUsers usuarios, ArbolCanciones canciones, ListaAutores autores) {
+        boolean exito = false;
+        int intentos = 0;
+
+        try {
+
+            // 1- Deserializar la lista de autores con sus respectivas listas circulares
+            autores.Deserializar(RUTA_CANCIONES);
+
+            // 2- Armar el arbol en base a los nodos cancion en las listas de autor.
+            canciones.Reconstruir(autores);
+
+            // 3- Deserializar el arbol de usuarios
+            usuarios.Deserializar(RUTA_USUARIOS);
+
+            // 4- Deserializar las listas propias y seguidas de cada usuario.
+            usuarios.DeserializarListas(RUTA_L_PROPIAS, RUTA_L_SEGUIDAS);
+
+            exito = true;   // Si todos los procesos terminan sin error, considero estado de exito.
+
+        } catch (IOException e) {
+
+            intentos++;
+            System.out.println("Hubo un error al guardar; Reintentando...");
+            e.printStackTrace();
+
+        }
+
+        return exito;
     }
+
 }

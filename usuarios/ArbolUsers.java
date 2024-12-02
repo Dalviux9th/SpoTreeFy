@@ -127,4 +127,19 @@ public class ArbolUsers {
             serializarListas(user.getmayores(), outProps, outSegs);
         }
     }
+
+    public void deserializarListas(String RUTA_L_PROPIAS, String RUTA_L_SEGUIDAS) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deserializarListas'");
+    }
+
+    public void DeserializarListas(String RUTA_L_PROPIAS, String RUTA_L_SEGUIDAS) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'DeserializarListas'");
+    }
+
+    public void Deserializar(String RUTA_USUARIOS) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'Deserializar'");
+    }
 }

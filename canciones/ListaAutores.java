@@ -1,5 +1,8 @@
+import java.io.EOFException;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class ListaAutores {
@@ -92,5 +95,28 @@ public class ListaAutores {
 
         out.close();
 
+    }
+
+    public void Deserializar(String RUTA_CANCIONES) throws IOException{
+        
+        try {
+            
+            FileInputStream fileIn = new FileInputStream(RUTA_CANCIONES);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            
+            this.primero = (NodoAutor) in.readObject();
+            
+            NodoAutor actual = primero;
+            
+            do {
+                actual.setSiguiente((NodoAutor) in.readObject());
+            } while (actual.getSiguiente() != null);
+            
+            in.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (EOFException n) {
+            n.printStackTrace();
+        }
     }
 }

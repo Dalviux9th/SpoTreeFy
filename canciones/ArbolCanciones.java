@@ -60,4 +60,20 @@ public class ArbolCanciones{
 
           return resultado;
      }
+
+     public void Reconstruir(ListaAutores autores) {
+          NodoAutor actual = autores.getPrimero();
+
+          while (actual != null) {
+               
+               NodoCancion canActual = actual.getCancion();
+
+               do {
+                    insertarOrdenado(canActual);            // ERROR: Esta mal porque el metodo inserta por titulo (No sirve pasarle el titulo porque duplicaría el objeto).
+                    canActual = canActual.getSigAutor();
+
+               } while (canActual != actual.getCancion());
+          }
+
+    }
 }
