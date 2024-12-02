@@ -1,10 +1,12 @@
-// IMPORTANTE! al generar el método serializador, agregar el titulo de la cancion (para despues revincular al deserializar)
-public class NodoAutor {
+import java.io.Serializable;
+
+public class NodoAutor implements Serializable{
     //Clase Nodo de la lista de autores.
+    private static final long serialVersionUID = 1L;
     
     private String nombreAutor;
     private transient NodoAutor siguiente;
-    private transient NodoCancion primeraCancion;
+    private NodoCancion primeraCancion;
 
     // Constructor
     public NodoAutor(String nombreAutor, NodoCancion cancion) {
@@ -49,11 +51,11 @@ public class NodoAutor {
 
     // Metodos de la lista de canciones del autor (CIRCULAR)
     
-    public void insertarCircular(NodoCancion nuevaCancion, String autor) {
+    public void insertarCircular(NodoCancion nuevaCancion) {
     // Agrega un nodo a la lista circular de su autor. Agrega siempre en el segundo lugar (no controla duplicados, debe contemplarse antes de insertar)
         if (this.primeraCancion == null) {
             this.primeraCancion = nuevaCancion;
-            nuevaCancion.setSigAutor(nuevaCancion);
+            nuevaCancion.setSigAutor(nuevaCancion);     // Apunta a si mismo (circular)
         } else {
             nuevaCancion.setSigAutor(primeraCancion.getSigAutor());
             this.primeraCancion.setSigAutor(nuevaCancion);
@@ -62,11 +64,51 @@ public class NodoAutor {
 
     public void printCancionesDelAutor() {
     // Muestra la lista circular entera.
-        NodoCancion actual = this.primeraCancion;
+        if (primeraCancion == null) {
+            System.out.println("La lista del autor está vacía");
+        } else {
+            NodoCancion actual = this.primeraCancion;
 
-        do {
-            System.out.println("- " + actual.getTitulo());
-            actual = actual.getSigAutor();
-        } while (actual != this.primeraCancion);
+            do {
+                System.out.println("- " + actual.getTitulo());
+                actual = actual.getSigAutor();
+            } while (actual != this.primeraCancion);
+        }
+    }
+
+    private String cancionesToString() {
+        NodoCancion actual = this.primeraCancion;
+        if (actual != null) {
+            return "NodoCancion{titulo='" + actual.getTitulo() + "', sigAutor='" + toStringRecursivo(actual.getSigAutor()) + "'}";
+        } else {
+            return null;
+        }
+    }
+
+    private String toStringRecursivo(NodoCancion actual) {
+        if (actual != this.primeraCancion) {
+            return "NodoCancion{titulo='" + actual.getTitulo() + "', sigAutor='" + toStringRecursivo(actual.getSigAutor());
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "NodoAutor{nombreAutor='" + this.nombreAutor + "', primeraCancion='" + cancionesToString() + "'}";
+    }
+
+    public NodoCancion ReturnCancion(NodoAutor Nodo, String titulo){
+        NodoCancion Actual = Nodo.getCancion();
+        while(Actual.getTitulo().compareTo(titulo) != 0&& Actual != null){
+            Actual = Actual.getSigAutor();
+        }if(Actual == null){
+            System.out.println("la cancion no existe");
+            return null;
+        }else{
+            return Actual;
+        }
+        
+
     }
 }

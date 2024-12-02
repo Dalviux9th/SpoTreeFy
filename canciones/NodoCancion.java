@@ -1,10 +1,11 @@
+
 public class NodoCancion {
     // Clase Nodo del ArbolCanciones. Tiene dos punteros (del arbol) y un tercero que apunta a la siguiente del autor (circular).
-    
+
     private String titulo;
     private transient NodoCancion anterior;     // Sub arbol izquierdo
     private transient NodoCancion posterior;    // Sub arbol derecho
-    private transient NodoCancion sigAutor;     // Siguiente en lista circular de autores
+    private NodoCancion sigAutor;     // Siguiente en lista circular de autores
 
     //Constructor
     public NodoCancion(String titulo){
@@ -13,7 +14,6 @@ public class NodoCancion {
         this.anterior = null;
         this.posterior = null;
         this.sigAutor = null;
-
     }
 
     //Getters y Setters     -----------
