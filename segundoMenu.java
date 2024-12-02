@@ -91,10 +91,14 @@ public class segundoMenu{
                     Autor = entrada.nextLine();
                     if(autores.autorExiste(Autor)){
                         NodoAutor AutorNodo = autores.buscarAutor(Autor);
-                        AutorNodo.printCancionesDelAutor();
-                        System.out.println("ingrese nombre de la cancion");
-                        titulo = entrada.nextLine();
-                        NodoCancion NombreCancion = canciones.ReturnCancion(titulo);
+                        if( AutorNodo != null){
+
+                            AutorNodo.printCancionesDelAutor();
+                            System.out.println("ingrese nombre de la cancion");
+                            titulo = entrada.nextLine();
+                            NodoCancion NombreCancion = AutorNodo.ReturnCancion(AutorNodo,titulo);
+                            agregarListaPropia( NombreCancion.getTitulo());
+                        }
                     }
 
                         
