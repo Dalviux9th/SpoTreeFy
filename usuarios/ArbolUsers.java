@@ -1,7 +1,3 @@
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-
 public class ArbolUsers {
     //clase para el arbol de usuarios
     NodoUser raiz;
@@ -51,16 +47,16 @@ public class ArbolUsers {
         }
     }
 
-    public void mostrarlistaCompleta(){
+    public void mostrarArbolCompleta(){
         NodoUser Actual = raiz;
-        imprimirLista(Actual);
+        imprimirArbol(Actual);
     }
 
-    public void imprimirLista( NodoUser Actual){
+    public void imprimirArbol( NodoUser Actual){
         if( Actual != null){
-            imprimirLista(Actual.getmenores());
+            imprimirArbol(Actual.getmenores());
             System.out.println( " usuario:" + Actual.getNombreUsu());
-            imprimirLista(Actual.getmayores());
+            imprimirArbol(Actual.getmayores());
         }
         
     }
@@ -77,37 +73,11 @@ public class ArbolUsers {
           } else {
                if ( actual.getNombreUsu().compareTo(User) > 0)
                actual = buscarUsuario(User, actual);
+               System.out.println("usuario recibido");
           }
 
           return resultado;
      }
 
-    public void Serializar(String RUTA_GUARDADO) throws IOException {
-        // Serializa todos los nodos de un arbol y los guarda en el archivo dado. Recorre en PRE-ORDER
-        FileOutputStream fileOut = new FileOutputStream(RUTA_GUARDADO);
-        ObjectOutputStream out = new ObjectOutputStream(fileOut);
-        
-        serializar(raiz, RUTA_GUARDADO, out);
-
-        out.close();
-
-    }
-
-    private void serializar(NodoUser user, String RUTA_GUARDADO, ObjectOutputStream out) throws IOException {
-
-        if (user != null) {
-            out.writeObject(user);
-            serializar(user.getmenores(), RUTA_GUARDADO, out);
-            serializar(user.getmayores(), RUTA_GUARDADO, out);
-        }
-
-    }
-
-    public void SerializarLPropias(String RUTA_L_PROPIAS) throws IOException {
-        // TODO Auto-generated method stub
-    }
-
-    public void SerializarLSeguidas(String RUTA_L_SEGUIDAS) throws IOException {
-        // TODO Auto-generated method stub
-    }
+     
 }

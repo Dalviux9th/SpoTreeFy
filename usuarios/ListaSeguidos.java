@@ -8,7 +8,7 @@ public class ListaSeguidos {
     public void NuevoSeguido(String NombreUsuario, String Nombreplaylist){
         NodoSeguidos Actual = primero;
 
-        while( (Actual.getnombreUsuario().compareTo(NombreUsuario) != 0 || Actual.getNombreLista().compareTo(Nombreplaylist) != 0) && Actual != null){
+        while( (Actual.getNombreUsuario().compareTo(NombreUsuario) != 0 || Actual.getNombreLista().compareTo(Nombreplaylist) != 0) && Actual != null){
             Actual = Actual.getSiguiente();
         }
             if( Actual == null){
@@ -22,16 +22,16 @@ public class ListaSeguidos {
         NodoSeguidos NuevaPlaylist = new NodoSeguidos(NuevaLista, NombreUsuario);
         NodoSeguidos Actual, Anterior;
         Anterior = primero;
-        if(Anterior == null || Anterior.getnombreUsuario().compareTo(NombreUsuario) > 0){
+        if(Anterior == null || Anterior.getNombreUsuario().compareTo(NombreUsuario) > 0){
             NuevaPlaylist.setSiguiente(Anterior);
             primero = NuevaPlaylist;
         }else{
             Actual = Anterior.getSiguiente();
-            while(Anterior.getnombreUsuario().compareTo(NombreUsuario) < 0 && Actual != null){
+            while(Anterior.getNombreUsuario().compareTo(NombreUsuario) < 0 && Actual != null){
                 Actual = Actual.getSiguiente();
                 Anterior = Anterior.getSiguiente();
             }
-            if(Actual.getnombreUsuario().compareTo(NombreUsuario) == 0){
+            if(Actual.getNombreUsuario().compareTo(NombreUsuario) == 0){
 
                 while(Actual.getNombreLista().compareTo(NuevaLista) < 0 && Actual != null){
                     Actual = Actual.getSiguiente();

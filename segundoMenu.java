@@ -97,7 +97,7 @@ public class segundoMenu{
                             System.out.println("ingrese nombre de la cancion");
                             titulo = entrada.nextLine();
                             NodoCancion NombreCancion = AutorNodo.ReturnCancion(AutorNodo,titulo);
-                            agregarListaPropia( NombreCancion.getTitulo());
+                            agregarListaPropia(NombreCancion.getTitulo());
                         }
                     }
 

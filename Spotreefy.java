@@ -73,7 +73,7 @@ public class Spotreefy {
                 
                     // Ver usuarios existentes
                     case 3:
-                        usuarios.mostrarlistaCompleta();
+                        usuarios.mostrarArbolCompleta();
                         break;
                     
                     // Salir
