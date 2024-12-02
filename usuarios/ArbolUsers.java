@@ -1,3 +1,7 @@
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 public class ArbolUsers {
     //clase para el arbol de usuarios
     NodoUser raiz;
@@ -79,5 +83,64 @@ public class ArbolUsers {
           return resultado;
      }
 
-     
+    public void Serializar(String RUTA_GUARDADO) throws IOException {
+        // Serializa todos los nodos de un arbol y los guarda en el archivo dado. Recorre en PRE-ORDER
+        FileOutputStream fileOut = new FileOutputStream(RUTA_GUARDADO);
+        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+        
+        serializar(raiz, out);
+
+        out.close();
+
+    }
+
+    private void serializar(NodoUser user, ObjectOutputStream out) throws IOException {
+
+        if (user != null) {
+            out.writeObject(user);
+            serializar(user.getmenores(), out);
+            serializar(user.getmayores(), out);
+        }
+
+    }
+
+    public void SerializarListas(String RUTA_PROPIAS, String RUTA_SEGUIDAS) throws IOException {
+        FileOutputStream fileOutProps = new FileOutputStream(RUTA_PROPIAS);
+        ObjectOutputStream outProps = new ObjectOutputStream(fileOutProps);
+        
+        FileOutputStream fileOutSegs = new FileOutputStream(RUTA_SEGUIDAS);
+        ObjectOutputStream outSegs = new ObjectOutputStream(fileOutSegs);
+        
+        
+        serializarListas(raiz, outProps, outSegs);
+
+        outProps.close();
+        outSegs.close();
+    }
+
+    public void serializarListas(NodoUser user, ObjectOutputStream outProps, ObjectOutputStream outSegs) throws IOException {
+
+        if (user != null) {
+            user.getL_propias().Serializar(user.getNombreUsu(), outProps);
+            user.getL_seguidos().Serializar(user.getNombreUsu(), outSegs);
+
+            serializarListas(user.getmenores(), outProps, outSegs);
+            serializarListas(user.getmayores(), outProps, outSegs);
+        }
+    }
+
+    public void deserializarListas(String RUTA_L_PROPIAS, String RUTA_L_SEGUIDAS) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deserializarListas'");
+    }
+
+    public void DeserializarListas(String RUTA_L_PROPIAS, String RUTA_L_SEGUIDAS) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'DeserializarListas'");
+    }
+
+    public void Deserializar(String RUTA_USUARIOS) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'Deserializar'");
+    }
 }

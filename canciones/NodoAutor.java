@@ -64,12 +64,16 @@ public class NodoAutor implements Serializable{
 
     public void printCancionesDelAutor() {
     // Muestra la lista circular entera.
-        NodoCancion actual = this.primeraCancion;
+        if (primeraCancion == null) {
+            System.out.println("La lista del autor está vacía");
+        } else {
+            NodoCancion actual = this.primeraCancion;
 
-        do {
-            System.out.println("- " + actual.getTitulo());
-            actual = actual.getSigAutor();
-        } while (actual != this.primeraCancion);
+            do {
+                System.out.println("- " + actual.getTitulo());
+                actual = actual.getSigAutor();
+            } while (actual != this.primeraCancion);
+        }
     }
 
     private String cancionesToString() {

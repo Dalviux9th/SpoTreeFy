@@ -1,4 +1,6 @@
 public class NodoSeguidos {
+    private static final long serialVersionUID = 1L;
+
     private String nombreUsuario;
     private String nombreLista;
     private NodoSeguidos Siguiente;

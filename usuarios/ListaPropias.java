@@ -1,3 +1,6 @@
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 public class ListaPropias {
     // clase listas propias
     private NodoPropias primero;
@@ -61,6 +64,14 @@ public class ListaPropias {
 
         }
 
+        public void Serializar(String nombreUsu, ObjectOutputStream out) throws IOException {
+            NodoPropias actual = primero;
+            while (actual != null) {
+                actual.getSubLista().Serializar(nombreUsu, actual.getPlaylist(), out);
+
+                actual = actual.getSiguiente();
+            }
+        }
         public void borrarL_propia(String Playlist){
             if(primero.getPlaylist().compareTo(Playlist) == 0){
                 primero = primero.getSiguiente();
