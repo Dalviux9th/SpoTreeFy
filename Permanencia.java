@@ -44,7 +44,7 @@ public class Permanencia {
                 e.printStackTrace();
 
             }
-
+            
         }
 
         return exito;

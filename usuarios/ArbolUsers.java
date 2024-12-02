@@ -51,16 +51,16 @@ public class ArbolUsers {
         }
     }
 
-    public void mostrarlistaCompleta(){
+    public void mostrarArbolCompleta(){
         NodoUser Actual = raiz;
-        imprimirLista(Actual);
+        imprimirArbol(Actual);
     }
 
-    public void imprimirLista( NodoUser Actual){
+    public void imprimirArbol( NodoUser Actual){
         if( Actual != null){
-            imprimirLista(Actual.getmenores());
+            imprimirArbol(Actual.getmenores());
             System.out.println( " usuario:" + Actual.getNombreUsu());
-            imprimirLista(Actual.getmayores());
+            imprimirArbol(Actual.getmayores());
         }
         
     }
@@ -77,6 +77,7 @@ public class ArbolUsers {
           } else {
                if ( actual.getNombreUsu().compareTo(User) > 0)
                actual = buscarUsuario(User, actual);
+               System.out.println("usuario recibido");
           }
 
           return resultado;

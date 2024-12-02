@@ -97,4 +97,18 @@ public class NodoAutor implements Serializable{
     public String toString() {
         return "NodoAutor{nombreAutor='" + this.nombreAutor + "', primeraCancion='" + cancionesToString() + "'}";
     }
+
+    public NodoCancion ReturnCancion(NodoAutor Nodo, String titulo){
+        NodoCancion Actual = Nodo.getCancion();
+        while(Actual.getTitulo().compareTo(titulo) != 0&& Actual != null){
+            Actual = Actual.getSigAutor();
+        }if(Actual == null){
+            System.out.println("la cancion no existe");
+            return null;
+        }else{
+            return Actual;
+        }
+        
+
+    }
 }

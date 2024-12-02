@@ -26,6 +26,15 @@ public class ListaPropias {
             
         }
 
+        public void imprimirLista(){
+            NodoPropias Actual = primero;
+            int cont = 1;
+            while( Actual != null){
+                System.out.println("Playlist numero " + cont + "nombre: " + Actual.getPlaylist());
+                cont ++;
+            }
+        }
+
         public NodoPropias verNodopropias(String Playlist){
             // Devuelve un nodo de listas propias dado el titulo de la Playlist.
             NodoPropias Actual = primero;
@@ -63,4 +72,29 @@ public class ListaPropias {
                 actual = actual.getSiguiente();
             }
         }
+        public void borrarL_propia(String Playlist){
+            if(primero.getPlaylist().compareTo(Playlist) == 0){
+                primero = primero.getSiguiente();
+            }else{
+
+                NodoPropias Actual, Anterior;
+                Actual = primero.getSiguiente();
+                Anterior = primero;
+                while( Actual.getPlaylist().compareTo(Playlist) != 0){
+                    Anterior = Actual;
+                    Actual = Actual.getSiguiente();
+                } 
+                    if(Actual.getPlaylist().compareTo(Playlist) == 0){
+                        //revisar posible error por Actual == null;
+                        Anterior.setSiguiente(Actual.getSiguiente());
+                        System.out.println("lista eliminada");
+                    }else{
+                        System.out.println("la lista a eliminar no existe");
+                    }
+            }
+            
+
+        }
+    
 }
+

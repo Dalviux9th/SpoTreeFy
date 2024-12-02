@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
 public class segundoMenu{
-
+    private ArbolUsers usuarios;
     private ArbolCanciones canciones;
     private NodoUser user;
     private ListaAutores autores;
     private Scanner entrada;
 
-    public segundoMenu(ArbolCanciones canciones, NodoUser user, ListaAutores autores) {
+    public segundoMenu(ArbolCanciones canciones, ArbolUsers usuarios, NodoUser user, ListaAutores autores) {
         this.canciones = canciones;
         this.user = user;
         this.autores = autores;
@@ -84,17 +84,57 @@ public class segundoMenu{
 
                 // Agregar cancion (a playlist) por autor   -----------------------------
                 case 4:
+                    String Tema, Autor, titulo;
+                    System.out.println("ingrese  nombre de la Playlist");
+                    Tema = entrada.nextLine();
+                    System.out.println("ingrese  nombre del autor");
+                    Autor = entrada.nextLine();
+                    if(autores.autorExiste(Autor)){
+                        NodoAutor AutorNodo = autores.buscarAutor(Autor);
+                        if( AutorNodo != null){
+
+                            AutorNodo.printCancionesDelAutor();
+                            System.out.println("ingrese nombre de la cancion");
+                            titulo = entrada.nextLine();
+                            NodoCancion NombreCancion = AutorNodo.ReturnCancion(AutorNodo,titulo);
+                            agregarListaPropia(NombreCancion.getTitulo());
+                        }
+                    }
+
+                        
+                        break;
                     
-                    break;
 
                 // Eliminar playlist propia
                 case 5:
-                    
+                    String Playlist;
+                    System.out.println("ingrese en nombre de la Playlist propia que desea eliminar");
+                    Playlist = entrada.nextLine();
+                    user.getL_propias().borrarL_propia(Playlist);
                     break;
 
                 // Seguir playlist de otro usuario
                 case 6:
-                    
+                    String UsuarioDes, NombreList;
+                    NodoPropias NamePlaylist;
+                    //revisar mejoras con variable Nombrelist
+                    System.out.println("ingrese nmbre del usuario de interes");
+                    UsuarioDes = entrada.nextLine();
+
+                    NodoUser UsuarioSeguir = usuarios.buscarUser(UsuarioDes);
+
+                    if(UsuarioDes != null){
+                        UsuarioSeguir.getL_propias().imprimirLista();
+
+                        System.out.println("ingrese en numero de la playlist que desea seguir");
+                        NombreList = entrada.nextLine();
+                        NamePlaylist =  UsuarioSeguir.getL_propias().verNodopropias(NombreList);
+
+                        if(NamePlaylist != null){
+
+                            user.getL_seguidos().NuevoSeguido(UsuarioDes, NamePlaylist.getPlaylist());
+                        }
+                    }
                     break;
 
                 // Salir al menú de primer nivel
